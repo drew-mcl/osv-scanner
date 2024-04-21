@@ -41,7 +41,7 @@ func (pss *pkgSourceSet) UnmarshalJSON(data []byte) error {
 
 // groupFixedVersions builds the fixed versions for each ID Group, with keys formatted like so:
 // `Source:ID`
-func groupFixedVersions(flattened []models.VulnerabilityFlattened) map[string][]string {
+func groupFixedVersions(flattened []models.IssueFlattened) map[string][]string {
 	groupFixedVersions := map[string][]string{}
 
 	// Get the fixed versions indexed by each group of vulnerabilities

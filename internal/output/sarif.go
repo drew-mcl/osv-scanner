@@ -93,7 +93,7 @@ reason = "Your reason for ignoring this vulnerability"
 
 // GroupFixedVersions builds the fixed versions for each ID Group, with keys formatted like so:
 // `Source:ID`
-func GroupFixedVersions(flattened []models.VulnerabilityFlattened) map[string][]string {
+func GroupFixedVersions(flattened []models.IssueFlattened) map[string][]string {
 	groupFixedVersions := map[string][]string{}
 
 	// Get the fixed versions indexed by each group of vulnerabilities

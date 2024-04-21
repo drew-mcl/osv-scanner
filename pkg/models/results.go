@@ -23,12 +23,12 @@ type ExperimentalLicenseConfig struct {
 }
 
 // Flatten the grouped/nested vulnerability results into one flat array.
-func (vulns *VulnerabilityResults) Flatten() []VulnerabilityFlattened {
-	results := []VulnerabilityFlattened{}
+func (vulns *VulnerabilityResults) Flatten() []IssueFlattened {
+	results := []IssueFlattened{}
 	for _, res := range vulns.Results {
 		for _, pkg := range res.Packages {
 			for _, v := range pkg.Vulnerabilities {
-				results = append(results, VulnerabilityFlattened{
+				results = append(results, IssueFlattened{
 					Source:        res.Source,
 					Package:       pkg.Package,
 					DepGroups:     pkg.DepGroups,
@@ -37,7 +37,7 @@ func (vulns *VulnerabilityResults) Flatten() []VulnerabilityFlattened {
 				})
 			}
 			if len(pkg.LicenseViolations) > 0 {
-				results = append(results, VulnerabilityFlattened{
+				results = append(results, IssueFlattened{
 					Source:            res.Source,
 					Package:           pkg.Package,
 					DepGroups:         pkg.DepGroups,
@@ -57,10 +57,8 @@ func getGroupInfoForVuln(groups []GroupInfo, vulnID string) GroupInfo {
 	return groups[groupIdx]
 }
 
-// Flattened Vulnerability Information.
-// TODO: rename this to IssueFlattened or similar in the next major release as
-// it now contains license violations.
-type VulnerabilityFlattened struct {
+// Flattened Issue Information.
+type IssueFlattened struct {
 	Source            SourceInfo
 	Package           PackageInfo
 	DepGroups         []string

@@ -12,17 +12,17 @@ func Test_groupFixedVersions(t *testing.T) {
 
 	tests := []struct {
 		name string
-		args []models.VulnerabilityFlattened
+		args []models.IssueFlattened
 		want testutility.Snapshot
 	}{
 		{
 			name: "",
-			args: testutility.LoadJSONFixture[[]models.VulnerabilityFlattened](t, "fixtures/flattened_vulns.json"),
+			args: testutility.LoadJSONFixture[[]models.IssueFlattened](t, "fixtures/flattened_vulns.json"),
 			want: testutility.NewSnapshot(),
 		},
 		{
 			name: "",
-			args: testutility.LoadJSONFixtureWithWindowsReplacements[[]models.VulnerabilityFlattened](t,
+			args: testutility.LoadJSONFixtureWithWindowsReplacements[[]models.IssueFlattened](t,
 				"fixtures/flattened_vulns.json",
 				map[string]string{
 					"/path/to/scorecard-check-osv-e2e/sub-rust-project/Cargo.lock": "D:\\\\path\\\\to\\\\scorecard-check-osv-e2e\\\\sub-rust-project\\\\Cargo.lock",

@@ -11,7 +11,7 @@ func TestFlatten(t *testing.T) {
 	t.Parallel()
 	// Test case 1: When there are no vulnerabilities
 	vulns := models.VulnerabilityResults{Results: []models.PackageSource{}}
-	expectedFlattened := []models.VulnerabilityFlattened{}
+	expectedFlattened := []models.IssueFlattened{}
 	flattened := vulns.Flatten()
 	if diff := cmp.Diff(flattened, expectedFlattened); diff != "" {
 		t.Errorf("Flatten() returned unexpected result (-got +want):\n%s", diff)
@@ -38,7 +38,7 @@ func TestFlatten(t *testing.T) {
 	}
 	source := models.PackageSource{Source: models.SourceInfo{Path: "package"}, Packages: []models.PackageVulns{pkg}}
 	vulns = models.VulnerabilityResults{Results: []models.PackageSource{source}}
-	expectedFlattened = []models.VulnerabilityFlattened{
+	expectedFlattened = []models.IssueFlattened{
 		{
 			Source:        source.Source,
 			Package:       pkg.Package,
@@ -63,7 +63,7 @@ func TestFlatten(t *testing.T) {
 	}
 	source = models.PackageSource{Source: models.SourceInfo{Path: "package"}, Packages: []models.PackageVulns{pkg}}
 	vulns = models.VulnerabilityResults{Results: []models.PackageSource{source}}
-	expectedFlattened = []models.VulnerabilityFlattened{
+	expectedFlattened = []models.IssueFlattened{
 		{
 			Source:            source.Source,
 			Package:           pkg.Package,
@@ -99,7 +99,7 @@ func TestFlatten(t *testing.T) {
 	}
 	source = models.PackageSource{Source: models.SourceInfo{Path: "package"}, Packages: []models.PackageVulns{pkg}}
 	vulns = models.VulnerabilityResults{Results: []models.PackageSource{source}}
-	expectedFlattened = []models.VulnerabilityFlattened{
+	expectedFlattened = []models.IssueFlattened{
 		{
 			Source:        source.Source,
 			Package:       pkg.Package,
